@@ -36,6 +36,14 @@ class Foo
     @b = b
     @c = c if c
   end
+
+  def self.class_method
+    puts 'I am a class method'
+  end
+
+  def instance_method
+    puts 'I am an instance method'
+  end
 end
 
 obj = Foo.new(4, 5)
@@ -49,10 +57,34 @@ p obj2.instance_variables # Result: [:@a, :@b, :@c]
 
 ### Methods
 
+```ruby
+class Foo
+  def self.class_method
+    puts 'I am a class method'
+  end
+
+  def instance_method
+    puts 'I am an instance method'
+  end
+end
+
+Foo.class_method # => 'I am a class method'
+Foo.instance_method # => undefined method `instance' for Foo
+
+Foo.new.class_method # => undefined method `class_method' for #<Foo:0x0000558d5023c390>
+Foo.new.instance_method # => 'I am an instance method'
+```
+
 - Get a list of an object's methods by calling `Object#methods`
 - Objects that share the same class also share the same methods, so the methods must be stored in the class, **not the object**
-- You can call: "My object has a method called my_method and I can call it by calling `obj.my_method()`". By contrast, you should not say that "My class has a method named `my_method`", it would be confusing, because it would imply that you're able to call `MyClass.my_method()`. To remove the ambiguity, you should say that "my_method is an instance method of MyClass"
-- my_method is defined in MyClass, so you need an object of my class to call it
+- You can call: "My object has a method called instance_method and I can call it by calling `obj.instance_method()`". By contrast, you should not say that "My class has a method named `instance_method`", it would be confusing, because it would imply that you're able to call `MyClass.instance_method()`. To remove the ambiguity, you should say that "instance_method is an instance method of MyClass"
+- instance_method is defined in MyClass, so you need an object of my class to call it
+- **Notes:**
+  - Class methods can only be called on classes
+  - Instance methods can only be called on instances of classes
+  - Class methods are always defined def self.method_name
+  - Instance methods are always defined def method_name
+  - Ref: <https://medium.com/@weberzt/class-vs-instance-methods-in-ruby-da4de44ac6a0>
 
 => **Conclusion:** an object's instance variables live in the object itself, and an object's methods live in the object's class. That's why objects of the same class share same methods but don't share instance variables
 
