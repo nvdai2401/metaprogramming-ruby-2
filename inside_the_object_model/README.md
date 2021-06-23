@@ -1,4 +1,4 @@
-# Chap 2: Inside the object model
+# Chapter 2: Inside the object model
 
 ## Inside class definitions
 

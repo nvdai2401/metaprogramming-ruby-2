@@ -83,7 +83,7 @@ nick.talk_simple # => NoMethodError: undefined method `talk_simple' for #<Lawyer
 
 - To avoid the `method_missing` traps that you call a method that's already defined in the ancestor classes such as `Object`, because if you don't specify a superclass of your class, your class inherits by default from `Object` which is itself a subclass of `BasicObject`. So you should use a blank slate by inheriting your class from `BasicObject`
 
-# Notes
+## Notes
 
 - `<Class or Module>.instance_methods` returns an array containing the names of the public and protected instance methods in the Class or Module
 - `object.methods` returns an array containing the names of the public and protected instance methods of the object that are inherited from `Class` or `Module`.
